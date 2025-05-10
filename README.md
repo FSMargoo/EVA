@@ -1,6 +1,6 @@
 ﻿![](./readme/banner.png)
 
-# $EVA$（ $Variable$ $Escape$ $Analyzer$ ）
+# $EVA$（ $Escape$ $Variable$ $Analyzer$ ）
 
 $EVA$ is a project which implemented a $\text{Graal Partial Escape Analysis(PEA)}$ analyzer for LLVM IR. It is originally a part of the project [PPLForge](https://github.com/FSMargoo/PPLForge).
 
