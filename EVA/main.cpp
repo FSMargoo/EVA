@@ -4,6 +4,7 @@
  *      @Date           :   5/10/2025
  */
 
-int main() {
-	return 0;
+int main()
+{
+    return 0;
 }

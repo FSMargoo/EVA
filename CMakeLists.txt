@@ -1,5 +1,5 @@
 ﻿cmake_minimum_required(VERSION 3.31)
-project(VEA)
+project(EVA)
 
 set(CMAKE_CXX_STANDARD 20)
 
@@ -16,15 +16,32 @@ llvm_map_components_to_libnames(llvm_libs
         support
 )
 
-add_executable(VEA
-        VEA/main.cpp)
-target_include_directories(VEA SYSTEM PRIVATE
+set(EVASource EVA/main.cpp
+        EVA/include/llvm/LLVM.h
+        EVA/src/llvm/LLVM.cpp
+        EVA/include/EVA.h
+        EVA/src/EVA.cpp
+        EVA/include/CFG/CFGBuilder.h
+        EVA/src/CFG/CFGBuilder.cpp
+        EVA/include/CFG/CFG.h)
+
+add_library(EVALib
+        ${EVASource})
+
+target_include_directories(EVALib SYSTEM PRIVATE
         ${LLVM_INCLUDE_DIRS}
         EVA/
 )
-target_compile_options(VEA PRIVATE
+target_compile_options(EVALib PRIVATE
         ${LLVM_REQUIRED_CXX_FLAGS}
 )
-target_link_libraries(VEA PRIVATE
+target_link_libraries(EVALib PRIVATE
         ${llvm_libs}
+)
+
+add_executable(EVATestCFG EVA/test/CFG/main.cpp)
+target_link_libraries(EVATestCFG EVALib)
+target_include_directories(EVATestCFG SYSTEM PRIVATE
+        ${LLVM_INCLUDE_DIRS}
+        EVA/
 )
